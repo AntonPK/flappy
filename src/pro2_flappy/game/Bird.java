@@ -2,6 +2,7 @@ package pro2_flappy.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Ellipse2D;
 
 public class Bird implements TickAware {
 
@@ -37,7 +38,18 @@ public class Bird implements TickAware {
 		g.setColor(Color.BLACK);
 		g.drawString(viewportX + "," + viewportY, (int) viewportX, (int) viewportY);
 	}
-
+	
+	public boolean collidesWithRectangle(int x, int y, int w, int h ){
+		//vytvorime kruznici reprezentujici obrys ptaka
+		Ellipse2D.Float birdsBoundary = new Ellipse2D.Float((int) viewportX - Tile.SIZE / 2, 
+															(int) viewportY - Tile.SIZE / 2,
+															Tile.SIZE, Tile.SIZE);
+		//overime zda kruznice ma neprazdny prunik													
+		return birdsBoundary.intersects(x, y, w, h);
+		
+		
+	}	
+	
 	@Override
 	public void tick(long ticksSinceStart) {
 		// reseni rychlosti a ticku do padu

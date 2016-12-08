@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 
 import pro2_flappy.game.GameBoard;
 import pro2_flappy.game.Tile;
+import pro2_flappy.game.tiles.EmptyTile;
 import pro2_flappy.game.tiles.WallTile;
 
 public class CsvGameBoardLoader implements GameBoardLoader {
@@ -87,10 +88,12 @@ public class CsvGameBoardLoader implements GameBoardLoader {
 			g.drawImage(croppedImage, 0, 0, Tile.SIZE, Tile.SIZE, null);
 			//vytvorime odpovidajici typ dlazdice
 			switch(clazz){
-				default:
-					return new WallTile(resizedImage);
-			}
+			case "Wall" : 	return new WallTile(resizedImage);
+			case "Empty" : return new EmptyTile(resizedImage);
+			case "Bonus" : return new EmptyTile(resizedImage);
 			
+			}
+			throw new RuntimeException("Neznamy typ dlazdice" + clazz);
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("špatná URL pro obrázek"+ clazz+ ":" + url,e);
 			

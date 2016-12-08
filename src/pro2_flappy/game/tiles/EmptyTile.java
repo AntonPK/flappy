@@ -5,12 +5,11 @@ import java.awt.Image;
 
 import pro2_flappy.game.Tile;
 
-public class WallTile extends AbstractTile {
-	public WallTile(Image image) {
+public class EmptyTile extends AbstractTile{
+	public EmptyTile(Image image) {
 		super(image);
-		// TODO Auto-generated constructor stub
+		
 	}
-
 
 
 }
