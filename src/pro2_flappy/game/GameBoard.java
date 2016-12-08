@@ -17,10 +17,10 @@ public class GameBoard implements TickAware {
 
 		tiles = new Tile[20][20]; // TODO vylepsit
 
-		tiles[0][0] = new WallTile();
-		tiles[1][1] = new WallTile();
-		tiles[3][3] = new WallTile();
-		tiles[5][5] = new WallTile();
+		//tiles[0][0] = new WallTile();
+		//tiles[1][1] = new WallTile();
+		//tiles[3][3] = new WallTile();
+		//tiles[5][5] = new WallTile();
 				
 		bird = new Bird(viewportWidth / 2, tiles.length * Tile.SIZE / 2);
 	}

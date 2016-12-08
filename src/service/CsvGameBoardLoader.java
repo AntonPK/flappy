@@ -1,13 +1,19 @@
 package service;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import pro2_flappy.game.GameBoard;
 import pro2_flappy.game.Tile;
@@ -34,7 +40,7 @@ public class CsvGameBoardLoader implements GameBoardLoader {
 				int width = Integer.parseInt(line[4]);
 				int height = Integer.parseInt(line[5]);
 				String url = line[6];
-				Tile tile = createTile(clazz,positionX,positionY,width,height);
+				Tile tile = createTile(clazz,positionX,positionY,width,height,url);
 				tileTypes.put(tileType, tile);
 				
 			}
@@ -68,9 +74,30 @@ public class CsvGameBoardLoader implements GameBoardLoader {
 		}
 				
 	}
-	private Tile createTile(String clazz, int positionX, int positionY, int width, int height) {
-		// TODO Auto-generated method stub
-		return null;
+	private Tile createTile(String clazz, int positionX, int positionY, int width, int height, String url) {
+		//stahnout obrazek z url a ulozit do promenne
+		try {
+			//stahnout obrazek z url a ulozit do promenne
+			BufferedImage originalImage = ImageIO.read(new URL(url));
+			// vyøíznout odpovídající sprite z velkého obrázku s mnoha sprity
+			BufferedImage croppedImage = originalImage.getSubimage(positionX, positionY, width, height);
+			//zvetsime cropped image aby sedel na velikost dlazdice
+			BufferedImage resizedImage = new BufferedImage(Tile.SIZE, Tile.SIZE, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = resizedImage.createGraphics();
+			g.drawImage(croppedImage, 0, 0, Tile.SIZE, Tile.SIZE, null);
+			//vytvorime odpovidajici typ dlazdice
+			switch(clazz){
+				default:
+					return new WallTile(resizedImage);
+			}
+			
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("špatná URL pro obrázek"+ clazz+ ":" + url,e);
+			
+		} catch (IOException e) {
+			throw new RuntimeException("chyba pøi ètení orbázku "+ clazz+ "z URL" + url,e);
+		}
+		
 	}
 
 }
