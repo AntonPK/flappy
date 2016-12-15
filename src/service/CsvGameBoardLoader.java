@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 
 import pro2_flappy.game.GameBoard;
 import pro2_flappy.game.Tile;
+import pro2_flappy.game.tiles.BonusTile;
 import pro2_flappy.game.tiles.EmptyTile;
 import pro2_flappy.game.tiles.WallTile;
 
@@ -90,7 +91,7 @@ public class CsvGameBoardLoader implements GameBoardLoader {
 			switch(clazz){
 			case "Wall" : 	return new WallTile(resizedImage);
 			case "Empty" : return new EmptyTile(resizedImage);
-			case "Bonus" : return new EmptyTile(resizedImage);
+			case "Bonus" : return new BonusTile(resizedImage);
 			
 			}
 			throw new RuntimeException("Neznamy typ dlazdice" + clazz);

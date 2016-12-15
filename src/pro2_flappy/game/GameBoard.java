@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.security.auth.callback.TextInputCallback;
 
+import pro2_flappy.game.tiles.BonusTile;
 import pro2_flappy.game.tiles.WallTile;
 
 public class GameBoard implements TickAware {
@@ -72,6 +73,15 @@ public class GameBoard implements TickAware {
 					System.out.println("Kolize- game over");
 					gameOver = true;
 				}
+				
+				}
+				if(t instanceof BonusTile){
+					
+				if(bird.collidesWithRectangle(screenX, screenY, Tile.SIZE, Tile.SIZE)){
+					((BonusTile)t).setIsActive(false);
+					
+				}
+				
 				}
 			}
 		}
