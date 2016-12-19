@@ -73,7 +73,9 @@ public class GameBoard implements TickAware {
 					((BonusTile)t).setIsActive(false);
 					
 				}
-				
+				 if(shiftX%300 == 0){
+					 ((BonusTile)t).setIsActive(true);
+				 }
 				}
 			}
 		}

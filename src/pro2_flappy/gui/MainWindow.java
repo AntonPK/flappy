@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
 		
 
 		this.add(pnl, BorderLayout.CENTER);
-		pnl.setPreferredSize(new Dimension(200, gameBoard.getHeightPix())); // TODO
+		pnl.setPreferredSize(new Dimension(300, gameBoard.getHeightPix())); // TODO
 
 		pack();
 
