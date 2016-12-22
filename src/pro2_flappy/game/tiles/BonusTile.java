@@ -13,6 +13,11 @@ public class BonusTile extends AbstractTile {
 		super(image);
 		this.emptyTile = emptyTile;
 	}
+	public BonusTile(BonusTile original){
+		super(original.image);
+		emptyTile = original.emptyTile;
+		
+	}
 	@Override
 	public void draw(Graphics g, int x, int y) {
 		if(isActive){

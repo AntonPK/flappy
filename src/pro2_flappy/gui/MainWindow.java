@@ -37,7 +37,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public MainWindow() {
-		try(InputStream is = new FileInputStream("flappylevel.csv")){
+		/*try(InputStream is = new FileInputStream("flappylevel.csv")){
 			GameBoardLoader loader = new CsvGameBoardLoader(is);
 			gameBoard = loader.loadLevel();
 		}
@@ -46,7 +46,9 @@ public class MainWindow extends JFrame {
 		}
 		catch(IOException e1){
 			e1.printStackTrace();
-		}
+		}*/
+		LevelPicker picker = new LevelPicker();
+		gameBoard = picker.pickAndLoadLevel();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		

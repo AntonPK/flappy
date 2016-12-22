@@ -68,7 +68,13 @@ public class CsvGameBoardLoader implements GameBoardLoader {
 					else
 						cell = "";
 					//ziskame odpovidajici typ dlazdice
-						tiles[i][j] = tileTypes.get(cell);
+					Tile t = tileTypes.get(cell);
+					//v pripade bonus tile vytvorime vzdy novou kopii
+					if(t instanceof BonusTile){
+						tiles[i][j]=new BonusTile((BonusTile)t);
+					}else{
+						tiles[i][j] = t;
+						}
 				}
 				
 			}
